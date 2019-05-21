@@ -1,2 +1,3 @@
-# show-me-blog
-used to set up user blog
+# Show Me
+
+Show-Me is used to set up a blog.
