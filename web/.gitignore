@@ -37,6 +37,7 @@ node_modules
 
 ## building output directory
 build
+dist
 
 # OSX
 .DS_Store
