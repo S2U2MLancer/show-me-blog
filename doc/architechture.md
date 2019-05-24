@@ -5,12 +5,12 @@
 
 actor User
 agent WebBrowser
-node LoadBalance [
+node ReverseProxy [
     Nginx
 ]
 
 User -right-> WebBrowser: open web site
-WebBrowser -right-> LoadBalance: requests
+WebBrowser -right-> ReverseProxy: requests
 
 folder StaticResources {
     folder WebResources [
@@ -21,10 +21,10 @@ folder StaticResources {
     folder BlogContents
 }
 
-LoadBalance --> StaticResources: read and cache static resources
+ReverseProxy --> StaticResources: read and cache static resources
 
 node Server
-LoadBalance -right-> Server: read dynamic data
+ReverseProxy -right-> Server: read dynamic data
 
 node Elasticsearch
 Server --> Elasticsearch: search for contents
