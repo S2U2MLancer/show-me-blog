@@ -1,5 +1,5 @@
 # Test strategy
-```
+```plantuml
 @startuml "Test"
 (*) --> "UT test" as UT
 if "accepted" then
