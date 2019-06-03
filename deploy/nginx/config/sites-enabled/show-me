@@ -1,0 +1,13 @@
+server {
+  listen 80;
+  server_name show-me.s2u2m.com;
+
+  location ~ \.(html|js|map|ts|png|svg|css|jpg|gif|woff2|woff|ttf|jsonp)$ {
+    root	/usr/share/nginx/show-me;
+  }
+
+  location / {
+    index   index.html;
+    root    /usr/share/nginx/show-me;
+  }
+}
