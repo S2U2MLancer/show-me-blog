@@ -10,22 +10,20 @@ class BodyElement extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     // eslint-disable-next-line react/prop-types
-    const { indexInfo } = this.props;
+    const { body } = this.props;
     return (
-      <div>{indexInfo.content}</div>
+      <div>{body.content}</div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  indexInfo: state.getIndexInfoReducers.indexInfo,
+  body: state.index,
 });
 
 const mapDispatchToProps = dispatch => ({
   getIndexInfoEvent: (id) => {
-    console.log('getIndexInfoEvent');
     dispatch(getIndexInfo(id));
   },
 });
