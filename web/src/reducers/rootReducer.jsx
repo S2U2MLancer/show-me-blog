@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import getIndexInfoReducers from './getIndexInfo';
+import index from '.';
 
 const rootReducer = combineReducers({
-  getIndexInfoReducers,
+  index,
 });
 
 export default rootReducer;

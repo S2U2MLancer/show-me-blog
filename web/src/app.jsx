@@ -5,14 +5,7 @@ import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
 import Body from './components/body';
 
-const state = {
-  getIndexInfoReducers: {
-    indexInfo: {
-      content: 'Hello',
-    },
-  },
-};
-const store = createStore(rootReducer, state);
+const store = createStore(rootReducer);
 
 const App = () => (
   <div className="container">
