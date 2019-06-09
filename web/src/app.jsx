@@ -22,3 +22,5 @@ ReactDOM.render(
   </Provider>,
   app,
 );
+
+export default App;
