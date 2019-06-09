@@ -22,6 +22,9 @@ Test phase: coding
 ```
 Output UT test cases during implementation code,ensure that the program's logic and expectations are consistent.
 ```
+### tools
+frontend: 
+backend: 
 ## API
 Test case proportions: 50%   
 Test phase: dev
@@ -43,7 +46,7 @@ postman/jmeter
 Test case proportions: 10%   
 Test phase: stage/deployment
 ### Tools
-GUI autotest framework?
+python3+selenum2
 ### Function
 ```
 Some smoking test cases
