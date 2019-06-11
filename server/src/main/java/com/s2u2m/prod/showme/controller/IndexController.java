@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexController {
 
-    @GetMapping("/test/{ping}")
+    @GetMapping("/index/{ping}")
     public String pingPong(@PathVariable String ping) {
         return ping;
     }
