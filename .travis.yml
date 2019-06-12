@@ -1,0 +1,20 @@
+dist: xenial
+sudo: required
+
+branches:
+  only:
+    - master
+    - dev
+
+addons:
+  sonarcloud:
+    organization: "s2u2m"
+    token:
+      secure: "$SONAR_TOKEN"
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
