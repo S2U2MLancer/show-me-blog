@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const webpack = require('webpack');
 
 const ROOT_PATH = path.resolve(__dirname);
@@ -54,6 +55,26 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Hello World',
+    }),
+    new HtmlWebpackExternalsPlugin({
+      externals: [
+        {
+          module: 'jquery',
+          entry: 'https://code.jquery.com/jquery-3.2.1.slim.min.js',
+          global: 'jQuery',
+        },
+        {
+          module: 'popper',
+          entry: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js',
+        },
+        {
+          module: 'bootstrap',
+          entry: [
+            'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+            'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
+          ],
+        },
+      ],
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
