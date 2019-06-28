@@ -9,5 +9,13 @@
         "immutable",
         "import",
         "promise"
+    ],
+    "overrides": [
+      {
+        "files": "**/*.test.{js,jsx}",
+        "env": {
+          "jest": true
+        }
+      }
     ]
 }

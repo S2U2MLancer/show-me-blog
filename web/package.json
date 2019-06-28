@@ -63,6 +63,7 @@
     "setupFiles": [
       "./tests/jest.setup.js"
     ],
+    "testRegex": ".+\\.test\\.(js|jsx)$",
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/coverage/**",
