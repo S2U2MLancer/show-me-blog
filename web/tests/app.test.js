@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 
-import App from '../src/app'
+import Routers from '../src/app'
 import rootReducer from '../src/reducers/rootReducer'
 import Body from '../src/components/body';
 
@@ -14,14 +14,14 @@ beforeEach( () => {
   const store = createStore(rootReducer)
   wrapper = mount (
     <Provider store={store}>
-    <App />
+    <Routers />
     </Provider>
   )
 })
 
 describe('test suite', ()=> {
     it('Check content', ()=> {
-      expect(wrapper.find(App).text()).toContain('Hello World React')
+      expect(wrapper.find(Routers).text()).toContain('Left Navigator')
   });
     it('Check Body', ()=> {
     expect(wrapper.find(Body).text()).toContain('Hello World React')
