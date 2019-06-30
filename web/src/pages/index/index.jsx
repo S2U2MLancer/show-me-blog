@@ -1,3 +1,5 @@
-import Body from '../../components/body';
+import Body from '../../containers/body';
 
-export default Body;
+const Index = Body;
+
+export default Index;

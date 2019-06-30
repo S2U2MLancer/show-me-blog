@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer';
+import reducers from './reducers';
 import Routers from './routers';
 
-const store = createStore(rootReducer);
+const store = createStore(reducers);
 
 const app = document.createElement('div');
 document.body.appendChild(app);
