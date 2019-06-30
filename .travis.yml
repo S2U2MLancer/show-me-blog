@@ -11,10 +11,23 @@ addons:
     organization: "s2u2m"
     token:
       secure: "$SONAR_TOKEN"
-script:
-  # other script steps might be done before running the actual analysis
-  - sonar-scanner
 
 cache:
   directories:
     - '$HOME/.sonar/cache'
+    
+matrix:
+  include:
+    language: node_js
+    node_js:
+      - '10'
+    before_script:
+      - cd web
+      - npm install
+    script:
+      - eslint -f json -o eslint-report.json .
+      - npm test
+    after_script:
+      - cd ..
+      - sonar-scanner
+  

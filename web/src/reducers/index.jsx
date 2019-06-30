@@ -1,19 +1,8 @@
-import { GET_INDEX_INFO } from '../actions/getIndexInfo';
+import { combineReducers } from 'redux';
+import getIndexInfoReducer from './getIndexInfoReducer';
 
-const initState = {
-  content: 'Hello',
-};
+const reducers = combineReducers({
+  getIndexInfoReducer,
+});
 
-function index(state = initState, action) {
-  switch (action.type) {
-    case GET_INDEX_INFO: {
-      return Object.assign({}, state, {
-        content: 'Hello World React',
-      });
-    }
-    default:
-      return state;
-  }
-}
-
-export default index;
+export default reducers;
