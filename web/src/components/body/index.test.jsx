@@ -19,7 +19,7 @@ function setup() {
 }
 
 describe('Body component', () => {
-  it('', () => {
+  it('test Body', () => {
     const { enzymeWrapper } = setup();
     enzymeWrapper.find(Body).contains('test');
   });

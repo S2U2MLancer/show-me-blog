@@ -22,7 +22,7 @@ function setup() {
 describe('index componet', () => {
   it('show', () => {
     const { enzymeWrapper } = setup();
-    expect(enzymeWrapper.find('div.col-md-3').text())
-      .toContain('Left Navigator');
+    expect(enzymeWrapper.find('div.col-md-4'))
+      .toexists;
   });
 });
