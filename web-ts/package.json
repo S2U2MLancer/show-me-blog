@@ -1,0 +1,54 @@
+{
+  "name": "show-me-blog",
+  "version": "0.1.0",
+  "description": "set up a user blog",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S2U2MLancer/show-me-blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Amos Xia",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/S2U2MLancer/show-me-blog/issues"
+  },
+  "homepage": "https://github.com/S2U2MLancer/show-me-blog",
+  "dependencies": {
+    "@types/jest": "24.0.15",
+    "@types/node": "12.6.3",
+    "@types/react": "16.8.23",
+    "@types/react-dom": "16.8.4",
+    "bootstrap": "^4.3.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "redux": "^4.0.4",
+    "typescript": "3.5.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
