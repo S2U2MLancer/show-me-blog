@@ -74,6 +74,12 @@ module.exports = {
             'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
           ],
         },
+        {
+          module: 'Font Awesome',
+          entry: [
+            'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+          ],
+        },
       ],
     }),
     new webpack.HotModuleReplacementPlugin(),
