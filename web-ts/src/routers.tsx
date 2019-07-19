@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import App from './pages/App';
+import LeftNav from './containers/LeftNav';
 
 const Routers = () => (
   <Router>
@@ -8,6 +9,7 @@ const Routers = () => (
       <div className="row">
         <div className="col-md-4">
           Left Navigator
+          <LeftNav />
         </div>
         <div className="col-md-8">
           <Switch>
