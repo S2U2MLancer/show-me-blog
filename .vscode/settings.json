@@ -1,3 +1,13 @@
 {
-    "files.eol": "\n"
+    "files.eol": "\n",
+    "files.associations": {
+        "*.jsx": "javascriptreact",
+        "*.tsx": "typescriptreact"
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 2,
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 2,
+    }
 }

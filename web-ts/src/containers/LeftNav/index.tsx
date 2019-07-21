@@ -1,44 +1,60 @@
 import React from 'react';
 import { bindActionCreators, Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
+import { AppState } from '../../reducers';
 import { UserInfo } from '../../reducers/UserInfo';
 import UserInfoElement from '../../components/UserInfo';
-import AppAction from '../../actions';
-import { AppState } from '../../reducers';
-import getUserInfoAction, { GetUserInfoAction } from '../../actions/GetUserInfo';
+import AppActionProducer from '../../actions';
+import { GetUserInfoAction } from '../../actions/GetUserInfo';
+import MenuListElement from '../../components/Menu';
+import { Menu, MenuList } from '../../reducers/Menu';
 
 export interface LeftNavElementProps {
-  onGetUserInfoAction: any
-  userInfo: UserInfo
+  getUserInfoAction: any,
+  getMenuList: any,
+  userInfo: UserInfo,
+  menuList: MenuList
 }
 
 class LeftNavElement extends React.Component<LeftNavElementProps> {
 
   componentWillMount() {
-    const { onGetUserInfoAction } = this.props;
-    onGetUserInfoAction('id');
+    this.props.getUserInfoAction('id');
+    this.props.getMenuList();
   }
 
   render() {
-    const { userInfo } = this.props;
+    const { userInfo, menuList } = this.props;
     if (userInfo === undefined || Object.keys(userInfo).length === 0) {
       return (
         <div />
       );
     }
+
     return (
-      <UserInfoElement userInfo={userInfo} />
+      <div className='container'>
+        <div className='row'>
+          <UserInfoElement userInfo={userInfo} />
+        </div>
+        <div className='row'>
+          <MenuListElement menuList={menuList.menuList} />
+        </div>
+        <div className='row'>
+        </div>
+      </div>
     );
   }
 }
 
 const stateToProps = (state: AppState) => ({
   userInfo: state.getUserInfo,
+  menuList: state.getMenuList
 });
 
 const dispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators({
-    onGetUserInfoAction: getUserInfoAction
+    getUserInfoAction: AppActionProducer.getUserInfo,
+    getMenuList: AppActionProducer.getMenuListAction
   }, dispatch);
 
 const LeftNav = connect(stateToProps, dispatchToProps)(LeftNavElement);

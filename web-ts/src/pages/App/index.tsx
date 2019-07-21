@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import logo from './logo.svg';
 import './index.css';
+import LeftNav from '../../containers/LeftNav';
 
-const App: React.FC = () => {
+const AppElement: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -22,5 +24,24 @@ const App: React.FC = () => {
     </div>
   );
 }
+
+const App = () => (
+  <Router>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-1" />
+        <div className="col-md-3">
+          <LeftNav />
+        </div>
+        <div className="col-md-7">
+          <Switch>
+            <Route path="/" exact={true} component={AppElement} />
+          </Switch>
+        </div>
+        <div className="col-md-1" />
+      </div>
+    </div>
+  </Router>
+);
 
 export default App;
