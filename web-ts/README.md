@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Tech Stack
+
+- [Typescript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [React-Redux](https://react-redux.js.org/)
+- [React-Router](https://reacttraining.com/react-router/)
+- [React-Sagas](https://redux-saga.js.org/)
+
 ## Available Scripts
 
 In the project directory, you can run:

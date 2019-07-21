@@ -1,15 +1,20 @@
-import { createAction, action } from "typesafe-actions";
+import { createAction } from "typesafe-actions";
 import ActionEvent from "../ActionEvent";
 
 export interface GetUserInfoAction { 
   id: string
 }
 
-const getUserInfoAction = createAction(
+const getUserInfo = createAction(
   ActionEvent.GET_USER_INFO, 
   action => {
-    return (id: string) => action({ id });
+    return (id: string) => {
+      const actionParam: GetUserInfoAction = {
+        id
+      };
+      return action(actionParam);
+    };
   }
 );
 
-export default getUserInfoAction;
+export default getUserInfo;
