@@ -1,15 +1,17 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import createSagaMiddleware from 'redux-saga'
 import getUserInfo from './UserInfo';
-import getMenuList from './Menu';
+import menu from './Menu';
 
 const rootReducer = combineReducers({
   getUserInfo,
-  getMenuList
+  menu
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configStore() {
-  const store = createStore(rootReducer);
+  const sagaMiddleware = createSagaMiddleware()
+  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
   return store;
 }

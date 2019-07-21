@@ -1,5 +1,6 @@
 import { createAction } from "typesafe-actions";
 import ActionEvent from "../ActionEvent";
+import putMenuListAction from './PutMenuList';
 
 export interface GetMenuListActionParam {
 }
@@ -11,3 +12,8 @@ export const getMenuListAction = createAction(
     return () => action(param);
   }
 );
+
+export default {
+  getMenuListAction, 
+  putMenuListAction
+}

@@ -1,5 +1,7 @@
 import { createReducer } from "typesafe-actions";
+import { combineReducers } from "redux";
 import ActionEvent from "../../actions/ActionEvent";
+import putMenuList from './PutMenuList'; 
 
 export interface Menu {
   name: string
@@ -30,4 +32,9 @@ const getMenuList = createReducer(init)
     }
   );
 
-export default getMenuList;
+const menuReducers = combineReducers({
+  getMenuList,
+  putMenuList
+});
+
+export default menuReducers;

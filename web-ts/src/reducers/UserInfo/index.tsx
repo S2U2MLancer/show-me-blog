@@ -25,7 +25,7 @@ const getUserInfo = createReducer(init).handleAction(
   ActionEvent.GET_USER_INFO, 
   (state, action) => {
     const userInfo = {
-      avatar: process.env.PUBLIC_URL + '/avatar.png',
+      avatar: '/avatar.png',
       username: 's2u2m',
       motto: '',
       contacts: [
