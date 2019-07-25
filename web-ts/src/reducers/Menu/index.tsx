@@ -14,9 +14,9 @@ const init: Readonly<MenuList> = {
   menuList: []
 };
 
-const getMenuList = createReducer(init)
+const menuList = createReducer(init)
   .handleAction(
-    ActionEvent.GET_MENU_LIST, 
+    ActionEvent.RECEIVE_MENU_LIST, 
     (state, action) => {
       const menuList: MenuList = {
         menuList: [
@@ -30,4 +30,4 @@ const getMenuList = createReducer(init)
     }
   );
 
-export default getMenuList;
+export default menuList;

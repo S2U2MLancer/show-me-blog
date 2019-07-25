@@ -1,6 +1,5 @@
 import { createReducer } from 'typesafe-actions';
 import ActionEvent from '../../actions/ActionEvent';
-import { userInfo } from 'os';
 
 export interface Contact {
   name: string,
@@ -21,9 +20,8 @@ const init: Readonly<UserInfo> = {
   contacts: []
 };
 
-const getUserInfo = createReducer(init).handleAction(
-  ActionEvent.GET_USER_INFO, 
-  (state, action) => {
+const userInfo = createReducer(init, {
+  [ActionEvent.GET_USER_INFO]: (state, action) => {
     const userInfo = {
       avatar: process.env.PUBLIC_URL + '/avatar.png',
       username: 's2u2m',
@@ -40,7 +38,8 @@ const getUserInfo = createReducer(init).handleAction(
       ]
     };
     return Object.assign(init, state, userInfo);
-  }
-);
+  },
+});
 
-export default getUserInfo;
+
+export default userInfo;

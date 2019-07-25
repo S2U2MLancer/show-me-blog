@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import getUserInfo from './UserInfo';
-import getMenuList from './Menu';
+import userInfo from './UserInfo';
+import menuList from './Menu';
 
 const rootReducer = combineReducers({
-  getUserInfo,
-  getMenuList
+  userInfo,
+  menuList
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof rootReducer>;
 
 export default function configStore() {
   const store = createStore(rootReducer);
