@@ -5,7 +5,7 @@ export interface GetMenuListActionParam {
 }
 
 export const getMenuListAction = createAction(
-  ActionEvent.GET_MENU_LIST,
+  ActionEvent.RECEIVE_MENU_LIST,
   action => {
     const param: GetMenuListActionParam = {};
     return () => action(param);

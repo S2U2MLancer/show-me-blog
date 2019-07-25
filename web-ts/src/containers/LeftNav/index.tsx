@@ -1,11 +1,11 @@
 import React from 'react';
 import { bindActionCreators, Dispatch, Action } from 'redux';
 import { connect } from 'react-redux';
-import { AppState } from '../../reducers';
+import { AppStore } from '../../reducers';
 import { UserInfo } from '../../reducers/UserInfo';
 import UserInfoElement from '../../components/UserInfo';
 import AppActionProducer from '../../actions';
-import { GetUserInfoAction } from '../../actions/GetUserInfo';
+import { GetUserInfoAction } from '../../actions/UserInfo';
 import MenuListElement from '../../components/Menu';
 import { Menu, MenuList } from '../../reducers/Menu';
 
@@ -46,9 +46,9 @@ class LeftNavElement extends React.Component<LeftNavElementProps> {
   }
 }
 
-const stateToProps = (state: AppState) => ({
-  userInfo: state.getUserInfo,
-  menuList: state.getMenuList
+const stateToProps = (state: AppStore) => ({
+  userInfo: state.userInfo,
+  menuList: state.menuList
 });
 
 const dispatchToProps = (dispatch: Dispatch) => 

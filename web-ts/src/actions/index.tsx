@@ -1,5 +1,5 @@
 import { ActionType } from 'typesafe-actions';
-import getUserInfo from './GetUserInfo';
+import getUserInfo from './UserInfo';
 import { getMenuListAction } from './Menu';
 
 const AppActionProducer = {
