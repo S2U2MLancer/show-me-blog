@@ -1,5 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import ActionEvent from '../../actions/ActionEvent';
+import { StoreUserInfoAction } from '../../actions/UserInfo';
 
 export interface Contact {
   name: string,
@@ -21,23 +22,8 @@ const init: Readonly<UserInfo> = {
 };
 
 const userInfo = createReducer(init, {
-  [ActionEvent.GET_USER_INFO]: (state, action) => {
-    const userInfo = {
-      avatar: process.env.PUBLIC_URL + '/avatar.png',
-      username: 's2u2m',
-      motto: '',
-      contacts: [
-        {
-          name: 'github',
-          url: 'https://github.com/S2U2MLancer',
-        },
-        {
-          name: 'envelope',
-          url: 'share2u2m@126.com',
-        }
-      ]
-    };
-    return Object.assign(init, state, userInfo);
+  [ActionEvent.STORE_USER_INFO]: (state, action) => {
+    return Object.assign(init, state, action.payload.userInfo);
   },
 });
 

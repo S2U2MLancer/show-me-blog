@@ -1,20 +1,30 @@
-import { createAction } from "typesafe-actions";
+import { createAction, action } from "typesafe-actions";
 import ActionEvent from "../ActionEvent";
+import { UserInfo } from '../../reducers/UserInfo';
+import { access } from "fs";
 
-export interface GetUserInfoAction { 
-  id: string
+export interface StoreUserInfoAction { 
+  id: string,
+  userInfo: UserInfo
 }
 
-const getUserInfo = createAction(
-  ActionEvent.GET_USER_INFO, 
+const storeUserInfo = createAction(
+  ActionEvent.STORE_USER_INFO, 
   action => {
-    return (id: string) => {
-      const actionParam: GetUserInfoAction = {
-        id
-      };
-      return action(actionParam);
-    };
+    return (actionParam: StoreUserInfoAction) => action(actionParam);
   }
 );
 
-export default getUserInfo;
+const fetchUserInfo = createAction(
+  ActionEvent.FETCH_USER_INFO,
+  action => {
+    return () => action();
+  }
+)
+
+const UserActions = {
+  fetchUserInfo,
+  storeUserInfo,
+}
+
+export default UserActions;

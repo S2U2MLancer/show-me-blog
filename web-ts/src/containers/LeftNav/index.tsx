@@ -5,7 +5,7 @@ import { AppStore } from '../../reducers';
 import { UserInfo } from '../../reducers/UserInfo';
 import UserInfoElement from '../../components/UserInfo';
 import AppActionProducer from '../../actions';
-import { GetUserInfoAction } from '../../actions/UserInfo';
+import { StoreUserInfoAction } from '../../actions/UserInfo';
 import MenuListElement from '../../components/Menu';
 import { Menu, MenuList } from '../../reducers/Menu';
 
@@ -19,7 +19,7 @@ export interface LeftNavElementProps {
 class LeftNavElement extends React.Component<LeftNavElementProps> {
 
   componentWillMount() {
-    this.props.getUserInfoAction('id');
+    this.props.getUserInfoAction();
     this.props.getMenuList();
   }
 
@@ -53,7 +53,7 @@ const stateToProps = (state: AppStore) => ({
 
 const dispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators({
-    getUserInfoAction: AppActionProducer.getUserInfo,
+    getUserInfoAction: AppActionProducer.UserActions.fetchUserInfo,
     getMenuList: AppActionProducer.getMenuListAction
   }, dispatch);
 
