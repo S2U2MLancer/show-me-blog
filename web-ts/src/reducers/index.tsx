@@ -1,6 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
+import createSagaMiddleware from 'redux-saga';
 import userInfo from './UserInfo';
 import menuList from './Menu';
+import AppSaga from '../sagas';
 
 const rootReducer = combineReducers({
   userInfo,
@@ -10,6 +12,8 @@ const rootReducer = combineReducers({
 export type AppStore = ReturnType<typeof rootReducer>;
 
 export default function configStore() {
-  const store = createStore(rootReducer);
+  const sagaMiddleware = createSagaMiddleware();
+  const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+  sagaMiddleware.run(AppSaga);
   return store;
 }

@@ -1,6 +1,7 @@
 enum ActionEvent {
   RECEIVE_MENU_LIST = 'RECEIVE_MENU_LIST',
-  GET_USER_INFO = 'GET_USER_INFO',
+  FETCH_USER_INFO = 'FETCH_USER_INFO',
+  STORE_USER_INFO = 'STORE_USER_INFO',
 }
 
 export default ActionEvent;
