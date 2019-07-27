@@ -16,7 +16,7 @@ export interface UserInfo {
 
 const init: Readonly<UserInfo> = {
   avatar: '/static/avatar.png',
-  username: 's2u2m',
+  username: 'init',
   motto: '',
   contacts: []
 };
@@ -26,6 +26,5 @@ const userInfo = createReducer(init, {
     return Object.assign(init, state, action.payload.userInfo);
   },
 });
-
 
 export default userInfo;
