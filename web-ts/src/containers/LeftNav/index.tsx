@@ -31,6 +31,7 @@ class LeftNavElement extends React.Component<LeftNavElementProps> {
       );
     }
 
+    console.log(this.props)
     return (
       <div className='container'>
         <div className='row'>
@@ -46,10 +47,13 @@ class LeftNavElement extends React.Component<LeftNavElementProps> {
   }
 }
 
-const stateToProps = (state: AppStore) => ({
-  userInfo: state.userInfo,
-  menuList: state.menuList
-});
+const stateToProps = (state: AppStore) => {
+    console.log(state)
+    return ({
+        userInfo: state.userInfo,
+        menuList: state.menuList
+    })
+};
 
 const dispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators({
