@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev
+server:
+  port: 7777
+s2u2m:
+  categories:
+    -
+      name: Test
+      dataPath: /home/user/workspace/s2u2m-code/show-me-blog/doc/study/测试
+    -
+      name: Article
+      dataPath: /data/Article
