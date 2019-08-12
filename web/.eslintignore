@@ -1,8 +1,0 @@
-# hidden files
-^\.(js)*
-
-# config files
-babel.config.js
-webpack.config.js
-jest.setup.spec.js
-
