@@ -23,7 +23,7 @@ const init: Readonly<UserInfo> = {
 
 const userInfo = createReducer(init, {
   [ActionEvent.STORE_USER_INFO]: (state, action) => {
-    return Object.assign(init, state, action.payload.userInfo);
+    return Object.assign({}, state, action.payload.userInfo);
   },
 });
 

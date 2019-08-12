@@ -23,10 +23,14 @@ const menuList = createReducer(init)
           {
             name: 'menu1',
             url: '/menu1'
+          },
+          {
+            name: 'menu2',
+            url: '/menu2'
           }
         ]
       };
-      return Object.assign(init, state, menuList);
+      return menuList;
     }
   );
 

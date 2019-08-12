@@ -1,16 +1,18 @@
 import { call, put, takeEvery, CallEffect } from 'redux-saga/effects';
 import ActionEvent from '../../actions/ActionEvent';
 import AppActionProducer from '../../actions';
-import { AxiosResponse } from 'axios';
+import axios, {AxiosResponse} from 'axios';
 import { UserInfo } from '../../reducers/UserInfo';
-import { getUserInfo } from '../../api/UserInfo';
 
 function* requestReceiveUserInfo() {
-  const userInfo: UserInfo = yield call(getUserInfo);
-  yield put(AppActionProducer.UserActions.storeUserInfo({
-    id: 'id',
-    userInfo: userInfo
-  }))
+  const response: AxiosResponse<UserInfo> = yield call(
+      () => axios.get<UserInfo>("/static/userInfo.json"));
+  if (response && response.status === 200) {
+    yield put(AppActionProducer.UserActions.storeUserInfo({
+      id: 'id',
+      userInfo: response.data
+    }))
+  }
 }
 
 function* receiveUserInfoWatcher() {
