@@ -32,7 +32,7 @@ class ArticleRepoImpl implements ArticleRepo {
     @Override
     public Article getArticleFromFile(CategoryInfo categoryInfo, File file) {
         try {
-            return new ArticleParser(file).parse();
+            return new ArticleParser(categoryInfo, file).parse();
         } catch (IOException e) {
             throw new ShowMeRuntimeException(ShowMeErrorCode.EXTERNAL_SERVICE_ERROR, e);
         }

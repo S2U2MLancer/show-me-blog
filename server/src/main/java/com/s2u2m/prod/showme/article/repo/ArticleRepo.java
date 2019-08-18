@@ -15,7 +15,7 @@ import com.s2u2m.prod.showme.category.domain.CategoryInfo;
 public interface ArticleRepo {
     Collection<Article> getArticles(CategoryInfo category);
 
-    Article getArticleFromFile(CategoryInfo categoryInfo, File file) throws IOException;
+    Article getArticleFromFile(CategoryInfo categoryInfo, File file);
 
     void save(Article article);
 }

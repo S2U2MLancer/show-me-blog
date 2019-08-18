@@ -1,6 +1,7 @@
 package com.s2u2m.prod.showme.category.domain;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.concurrent.RecursiveAction;
