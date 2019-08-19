@@ -15,6 +15,7 @@ import lombok.Getter;
 @Builder
 public class Article {
     private String id;
+    private String category;
     private String title;
 //    private String author;
 //    private String summary;

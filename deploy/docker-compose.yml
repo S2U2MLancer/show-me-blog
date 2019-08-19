@@ -10,3 +10,30 @@ services:
       - ./nginx/config:/etc/nginx
       - ./nginx/log:/var/log/nginx
       - ./nginx/web/show-me:/usr/share/nginx/show-me
+    networks:
+      - show-me-net
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+    ports:
+      - "9200:9200"
+    environment:
+      discovery.type: "single-node"
+    networks:
+      - show-me-net
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.0
+    volumes:
+      - ./kibana/config/:/usr/share/kibana/config:ro
+    ports:
+      - "5601:5601"
+    networks:
+      - show-me-net
+    depends_on:
+      - es
+
+networks:
+  show-me-net:
+    name: show-me-net
+    driver: bridge

@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 import com.s2u2m.prod.showme.article.domain.Article;
 import com.s2u2m.prod.showme.category.domain.CategoryInfo;
+import org.apache.commons.lang3.SystemUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -59,10 +60,8 @@ public class ArticleParser {
 
     private void initArticle(Article.ArticleBuilder builder, File articleFile) throws IOException {
         BasicFileAttributes attributes = Files.readAttributes(articleFile.toPath(), BasicFileAttributes.class);
-        String fileKey = Optional.ofNullable(attributes.fileKey())
-                .map(Object::toString)
-                .orElse(UUID.randomUUID().toString());
-        builder.id(fileKey)
+        builder.id(getFileKey(attributes))
+                .category(this.categoryInfo.getName())
                 .createTime(attributes.creationTime().toInstant())
                 .updateTime(attributes.lastModifiedTime().toInstant());
 
@@ -70,15 +69,24 @@ public class ArticleParser {
         var articleRelPath = articleFile.toString().substring(index);
         builder.filePath(articleRelPath);
 
-        Path articleDirRelPath = Paths.get(articleRelPath).getParent();
-        String[] labels = StringUtils.split(articleDirRelPath.toString(), File.separator);
-        if (ObjectUtils.isEmpty(labels)) {
-            return;
-        }
+        List<String> labels = new LinkedList<>();
+        labels.add(this.categoryInfo.getName());
 
-        Collection<String> validLabels = Stream.of(labels)
-                .filter(label -> !StringUtils.isEmpty(label))
-                .collect(Collectors.toList());
-        builder.labels(validLabels);
+        Path articleDirRelPath = Paths.get(articleRelPath).getParent();
+        String[] relPathLabels = StringUtils.split(articleDirRelPath.toString(), File.separator);
+        if (!ObjectUtils.isEmpty(labels)) {
+            labels.addAll(Arrays.stream(relPathLabels)
+                    .filter(label -> !StringUtils.isEmpty(label))
+                    .collect(Collectors.toList())
+            );
+        }
+        builder.labels(labels);
+    }
+
+    private String getFileKey(BasicFileAttributes attributes) {
+        if (SystemUtils.IS_OS_LINUX) {
+            return attributes.fileKey().toString();
+        }
+        return UUID.randomUUID().toString();
     }
 }
