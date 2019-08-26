@@ -6,5 +6,5 @@ import java.util.Map;
 public interface ArticleEsRepo {
     String insert(ArticleDoc doc) throws IOException;
 
-    Map<String, Long> getLabelStatistic();
+    Map<String, Long> getLabelStatistic(String category) throws IOException;
 }
