@@ -10,13 +10,13 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.script.ScriptType;
 import org.elasticsearch.script.mustache.SearchTemplateRequest;
 import org.elasticsearch.script.mustache.SearchTemplateResponse;
+import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -45,7 +45,7 @@ public class ArticleEsRepoImpl implements ArticleEsRepo {
         request.setScriptType(ScriptType.STORED);
         request.setScript("article_label_statistic");
 
-        Map<String, Object> params = new HashMap<>();
+        var params = new LinkedHashMap<String, Object>();
         params.put("category", category);
         request.setScriptParams(params);
 
@@ -59,5 +59,36 @@ public class ArticleEsRepoImpl implements ArticleEsRepo {
                         Terms.Bucket::getKeyAsString,
                         Terms.Bucket::getDocCount
                 ));
+    }
+
+    @Override
+    public Collection<ArticleDoc> getArticles(String category, String label) throws IOException {
+        SearchTemplateRequest request = new SearchTemplateRequest();
+        request.setRequest(new SearchRequest(ARTICLE_INDEX_NAME));
+        request.setScriptType(ScriptType.STORED);
+        request.setScript("label_articles");
+
+        var params = new LinkedHashMap<String, Object>();
+        params.put("category", category);
+        params.put("label", label);
+        request.setScriptParams(params);
+
+        SearchTemplateResponse response;
+        try(var client = esConfig.getEsClient()) {
+            response = client.searchTemplate(request, RequestOptions.DEFAULT);
+        }
+
+        if (response.getResponse().getHits().getTotalHits().value == 0) {
+            return Collections.emptyList();
+        }
+
+        var docs = new LinkedList<ArticleDoc>();
+        for (SearchHit hit: response.getResponse().getHits().getHits()) {
+            ObjectMapper mapper = new ObjectMapper();
+            ArticleDoc doc = mapper.readValue(hit.getSourceAsString(), ArticleDoc.class);
+            doc.setId(hit.getId());
+            docs.add(doc);
+        }
+        return docs;
     }
 }

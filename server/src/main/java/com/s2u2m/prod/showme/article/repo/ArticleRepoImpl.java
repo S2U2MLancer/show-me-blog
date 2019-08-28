@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 /**
  * ArticleRepoImpl Create on 8/12/19
@@ -26,9 +28,15 @@ class ArticleRepoImpl implements ArticleRepo {
     private ArticleEsRepo articleEsRepo;
 
     @Override
-    public Collection<Article> getArticles(CategoryInfo category) {
-
-        return null;
+    public Collection<Article> getArticles(CategoryInfo category, String label) {
+        try {
+            Collection<ArticleDoc> docs = articleEsRepo.getArticles(category.getName(), label);
+            return docs.stream()
+                    .map(ArticleConverter::toArticle)
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new ShowMeRuntimeException(ShowMeErrorCode.EXTERNAL_SERVICE_ERROR, e);
+        }
     }
 
     @Override
@@ -48,10 +56,11 @@ class ArticleRepoImpl implements ArticleRepo {
         } catch (IOException e) {
             throw new ShowMeRuntimeException(ShowMeErrorCode.EXTERNAL_SERVICE_ERROR, e);
         }
+
     }
 
     private static class ArticleConverter {
-        public static ArticleDoc toEsDoc(Article article) {
+        static ArticleDoc toEsDoc(Article article) {
             ArticleDoc doc = new ArticleDoc();
             doc.setId(article.getId());
             doc.setTitle(article.getTitle());
@@ -61,6 +70,19 @@ class ArticleRepoImpl implements ArticleRepo {
             doc.setLabels(article.getLabels());
             doc.setFilePath(article.getFilePath());
             return doc;
+        }
+
+        static Article toArticle(ArticleDoc doc) {
+            return Article.builder()
+                    .id(doc.getId())
+                    .category(doc.getCategory())
+                    .title(doc.getTitle())
+                    .createTime(Instant.ofEpochMilli(doc.getCreateTime()))
+                    .updateTime(Instant.ofEpochMilli(doc.getUpdateTime()))
+                    .labels(doc.getLabels())
+                    .filePath(doc.getFilePath())
+                    .build();
+
         }
     }
 }
