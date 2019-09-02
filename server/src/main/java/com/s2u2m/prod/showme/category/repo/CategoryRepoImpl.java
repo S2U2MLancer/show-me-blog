@@ -22,6 +22,7 @@ public class CategoryRepoImpl implements CategoryRepo {
             var labelStatistic = articleEsRepo.getLabelStatistic(category);
             return labelStatistic.entrySet().stream()
                     .map(entry -> LabelStatistic.builder()
+                            .category(category)
                             .label(entry.getKey())
                             .articleAmount(entry.getValue())
                             .build())

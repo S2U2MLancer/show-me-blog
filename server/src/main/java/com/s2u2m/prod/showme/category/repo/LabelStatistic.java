@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class LabelStatistic {
+    private String category;
     private String label;
     private Long articleAmount;
 }

@@ -20,4 +20,11 @@ import lombok.Setter;
 @ConfigurationProperties(prefix = "s2u2m")
 public class CategoriesConfig {
     private Collection<CategoryInfo> categories;
+
+    public CategoryInfo getCategory(String category) {
+        return categories.stream()
+                .filter(categoryInfo -> categoryInfo.getName().equals(category))
+                .findFirst()
+                .orElse(null);
+    }
 }
