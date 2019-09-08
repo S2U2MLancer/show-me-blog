@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import createSagaMiddleware from 'redux-saga';
 import userInfo from './UserInfo';
-import menuList from './Menu';
+import menuList from './Category';
 import AppSaga from '../sagas';
 
 const rootReducer = combineReducers({

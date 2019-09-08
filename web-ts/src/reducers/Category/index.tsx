@@ -1,25 +1,25 @@
 import { createReducer } from "typesafe-actions";
 import ActionEvent from "../../actions/ActionEvent";
 
-export interface Menu {
+export interface Category {
   name: string
   url: string
 }
 
-export interface MenuList {
-  menuList: Array<Menu>;
+export interface Categories {
+  categories: Array<Category>;
 }
 
-const init: Readonly<MenuList> = {
-  menuList: []
+const init: Readonly<Categories> = {
+  categories: []
 };
 
-const menuList = createReducer(init)
+const categories = createReducer(init)
   .handleAction(
     ActionEvent.RECEIVE_MENU_LIST, 
     (state, action) => {
-      const menuList: MenuList = {
-        menuList: [
+      const categories: Categories = {
+        categories: [
           {
             name: 'menu1',
             url: '/menu1'
@@ -30,8 +30,8 @@ const menuList = createReducer(init)
           }
         ]
       };
-      return menuList;
+      return categories;
     }
   );
 
-export default menuList;
+export default categories;

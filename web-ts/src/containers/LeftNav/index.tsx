@@ -6,14 +6,14 @@ import { UserInfo } from '../../reducers/UserInfo';
 import UserInfoElement from '../../components/UserInfo';
 import AppActionProducer from '../../actions';
 import { StoreUserInfoAction } from '../../actions/UserInfo';
-import MenuListElement from '../../components/Menu';
-import { Menu, MenuList } from '../../reducers/Menu';
+import CategoriesElement from '../../components/Category';
+import { Category, Categories } from '../../reducers/Category';
 
 export interface LeftNavElementProps {
   getUserInfoAction: any,
   getMenuList: any,
   userInfo: UserInfo,
-  menuList: MenuList
+  categories: Categories
 }
 
 class LeftNavElement extends React.Component<LeftNavElementProps> {
@@ -24,7 +24,7 @@ class LeftNavElement extends React.Component<LeftNavElementProps> {
   }
 
   render() {
-    const { userInfo, menuList } = this.props;
+    const { userInfo, categories } = this.props;
     if (userInfo === undefined || Object.keys(userInfo).length === 0) {
       return (
         <div />
@@ -37,7 +37,7 @@ class LeftNavElement extends React.Component<LeftNavElementProps> {
           <UserInfoElement userInfo={userInfo} />
         </div>
         <div className='row'>
-          <MenuListElement menuList={menuList.menuList} />
+          <CategoriesElement categories={categories} />
         </div>
         <div className='row'>
         </div>
