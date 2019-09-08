@@ -34,7 +34,7 @@ public class ArticleResource extends ResourceSupport {
         this.createTime = article.getCreateTime();
         this.updateTime = article.getUpdateTime();
 
-        var self = linkTo("static").slash(article.getFilePath()).withSelfRel();
-        add(self);
+//        var self = linkTo("static").slash(article.getFilePath()).withSelfRel();
+//        add(self);
     }
 }

@@ -17,6 +17,7 @@ public class PagingUtils {
         int pageAmount = Math.round(arrays.length / pageSize);
         int start = (pageIndex - 1) * pageSize;
         int end = start + pageSize;
+        end = Math.min(end, arrays.length);
         T[] pagingItems = Arrays.copyOfRange(arrays, start, end);
         return Paging.<T>builder()
                 .currentIndex(pageIndex)

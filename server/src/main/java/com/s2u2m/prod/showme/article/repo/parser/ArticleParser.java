@@ -1,5 +1,12 @@
 package com.s2u2m.prod.showme.article.repo.parser;
 
+import com.s2u2m.prod.showme.article.domain.Article;
+import com.s2u2m.prod.showme.category.domain.CategoryInfo;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.SystemUtils;
+import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -9,17 +16,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import com.s2u2m.prod.showme.article.domain.Article;
-import com.s2u2m.prod.showme.category.domain.CategoryInfo;
-import org.apache.commons.lang3.SystemUtils;
-import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * ArticleParser Create on 8/15/19
@@ -60,7 +62,7 @@ public class ArticleParser {
 
     private void initArticle(Article.ArticleBuilder builder, File articleFile) throws IOException {
         BasicFileAttributes attributes = Files.readAttributes(articleFile.toPath(), BasicFileAttributes.class);
-        builder.id(getFileKey(attributes))
+        builder.id(getFileKey(articleFile, attributes))
                 .category(this.categoryInfo.getName())
                 .createTime(attributes.creationTime().toInstant())
                 .updateTime(attributes.lastModifiedTime().toInstant());
@@ -83,10 +85,10 @@ public class ArticleParser {
         builder.labels(labels);
     }
 
-    private String getFileKey(BasicFileAttributes attributes) {
+    private String getFileKey(File articleFile, BasicFileAttributes attributes) {
         if (SystemUtils.IS_OS_LINUX) {
             return attributes.fileKey().toString();
         }
-        return UUID.randomUUID().toString();
+        return DigestUtils.sha256Hex(articleFile.getPath());
     }
 }
