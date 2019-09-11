@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { AppStore } from '../../reducers';
 import { UserInfo } from '../../reducers/UserInfo';
 import UserInfoElement from '../../components/UserInfo';
-import AppActionProducer from '../../actions';
+import AppActionCreator from '../../actions';
 import { StoreUserInfoAction } from '../../actions/UserInfo';
 import CategoriesElement from '../../components/Category';
 import { Category, Categories } from '../../reducers/Category';
@@ -53,8 +53,8 @@ const stateToProps = (state: AppStore) => ({
 
 const dispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators({
-    getUserInfoAction: AppActionProducer.UserActions.fetchUserInfo,
-    getMenuList: AppActionProducer.getMenuListAction
+    getUserInfoAction: AppActionCreator.UserActions.fetchUserInfo,
+    getMenuList: AppActionCreator.getMenuListAction
   }, dispatch);
 
 const LeftNav = connect(stateToProps, dispatchToProps)(LeftNavElement);

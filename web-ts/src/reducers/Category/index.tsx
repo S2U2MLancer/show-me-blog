@@ -1,37 +1,22 @@
 import { createReducer } from "typesafe-actions";
-import ActionEvent from "../../actions/ActionEvent";
+import { CategoryEvent } from '../../actions/Category'
 
 export interface Category {
   name: string
   url: string
 }
 
-export interface Categories {
-  categories: Array<Category>;
-}
-
-const init: Readonly<Categories> = {
-  categories: []
-};
-
-const categories = createReducer(init)
+const category = createReducer([])
   .handleAction(
-    ActionEvent.RECEIVE_MENU_LIST, 
-    (state, action) => {
-      const categories: Categories = {
-        categories: [
-          {
-            name: 'menu1',
-            url: '/menu1'
-          },
-          {
-            name: 'menu2',
-            url: '/menu2'
-          }
-        ]
-      };
-      return categories;
+    CategoryEvent.SAVE_CATEGORIES, 
+    (_, action) => {
+      return [...action.playload.categories];
+    })
+  .handleAction(
+    CategoryEvent.GET_CATEGORIES, 
+    (state, _) => {
+      return [...state]
     }
   );
 
-export default categories;
+export default category;

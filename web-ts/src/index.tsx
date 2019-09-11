@@ -5,8 +5,8 @@ import configStore from './reducers';
 import App from './pages/App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import store from './store';
 
-const store = configStore();
 const Root = () => (
   <Provider store={store}>
     <App />

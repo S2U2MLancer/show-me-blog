@@ -1,12 +1,10 @@
 import { ActionType } from 'typesafe-actions';
 import UserActions from './UserInfo';
-import { getMenuListAction } from './Menu';
+import CategoryActionCreator from './Category';
 
-const AppActionProducer = {
+const AppActionCreator = {
   UserActions,
-  getMenuListAction
+  Category: CategoryActionCreator
 };
 
-// type AppAction = ActionType<typeof actions>;
-
-export default AppActionProducer;
+export default AppActionCreator;

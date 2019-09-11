@@ -1,14 +1,26 @@
 import { AxiosResponse } from "axios";
-
+import { takeEvery, put } from "redux-saga/effects";
+import { CategoryEvent } from "../../actions/Category";
+import AppActionCreator from "../../actions";
 
 
 function* loadCateories() {
-  const response: AxiosResponse<UserInfo> = yield call(
-    () => axios.get<UserInfo>("http://localhost:7777/categories/"));
-    if (response && response.status === 200) {
-      yield put(AppActionProducer.UserActions.storeUserInfo({
-        id: 'id',
-        userInfo: response.data
-      }))
+  const categories = [
+      {
+          name: 'Study',
+          url: ''
+      },
+      {
+        name: 'Test',
+        url: ''
     }
+  ]
+  yield put(AppActionCreator.Category.saveCategories(categories))
 }
+
+
+function* loadCateoriesWatcher() {
+    yield takeEvery(CategoryEvent.LOAD_CATEGORIES, loadCateories);
+}
+
+export default loadCateoriesWatcher;
