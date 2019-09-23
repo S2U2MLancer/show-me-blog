@@ -1,9 +1,11 @@
-import { call, put, takeEvery, all, fork } from 'redux-saga/effects';
+import { all, fork } from 'redux-saga/effects';
 import receiveUserInfoWatcher from './UserInfo';
+import loadCateoriesWatcher from './Category';
 
 const AppSaga = function* appSaga() {
   yield all([
     fork(receiveUserInfoWatcher),
+    fork(loadCateoriesWatcher)
   ])
 }
 

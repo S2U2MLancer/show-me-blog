@@ -1,15 +1,14 @@
 import React from 'react';
-import { Category, Categories } from '../../reducers/Category';
-import { element } from 'prop-types';
+import { Category } from '../../reducers/Category';
 
 interface Props {
-    categories: Categories
+    categories: Category[]
 }
 
 class CategoriesElement extends React.Component<Props> {
 
   render() {
-    const { categories } = this.props.categories;
+    const categories = this.props.categories;
     return (
       <div className='list-group list-group-flush'>
         {categories.map(element => (

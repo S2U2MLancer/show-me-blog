@@ -6,11 +6,13 @@ export interface Category {
   url: string
 }
 
-const category = createReducer([])
+const init: Category[] = []
+
+const category = createReducer(init)
   .handleAction(
     CategoryEvent.SAVE_CATEGORIES, 
     (_, action) => {
-      return [...action.playload.categories];
+      return [...action.payload.categories];
     })
   .handleAction(
     CategoryEvent.GET_CATEGORIES, 

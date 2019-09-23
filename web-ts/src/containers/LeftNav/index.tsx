@@ -1,26 +1,26 @@
 import React from 'react';
-import { bindActionCreators, Dispatch, Action } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AppStore } from '../../reducers';
 import { UserInfo } from '../../reducers/UserInfo';
 import UserInfoElement from '../../components/UserInfo';
 import AppActionCreator from '../../actions';
-import { StoreUserInfoAction } from '../../actions/UserInfo';
 import CategoriesElement from '../../components/Category';
-import { Category, Categories } from '../../reducers/Category';
+import { Category } from '../../reducers/Category';
+import { RootState } from 'typesafe-actions';
+
 
 export interface LeftNavElementProps {
   getUserInfoAction: any,
-  getMenuList: any,
+  loadMenuList: any,
   userInfo: UserInfo,
-  categories: Categories
+  categories: Category[]
 }
 
 class LeftNavElement extends React.Component<LeftNavElementProps> {
 
   componentWillMount() {
     this.props.getUserInfoAction();
-    this.props.getMenuList();
+    this.props.loadMenuList();
   }
 
   render() {
@@ -46,15 +46,15 @@ class LeftNavElement extends React.Component<LeftNavElementProps> {
   }
 }
 
-const stateToProps = (state: AppStore) => ({
+const stateToProps = (state: RootState) => ({
   userInfo: state.userInfo,
-  menuList: state.menuList
+  categories: state.category
 });
 
 const dispatchToProps = (dispatch: Dispatch) => 
   bindActionCreators({
     getUserInfoAction: AppActionCreator.UserActions.fetchUserInfo,
-    getMenuList: AppActionCreator.getMenuListAction
+    loadMenuList: AppActionCreator.Category.loadCategories,
   }, dispatch);
 
 const LeftNav = connect(stateToProps, dispatchToProps)(LeftNavElement);

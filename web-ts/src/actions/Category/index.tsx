@@ -1,4 +1,4 @@
-import { createAction, action } from "typesafe-actions";
+import { createAction } from "typesafe-actions";
 import { Category } from "../../reducers/Category";
 
 export enum CategoryEvent {

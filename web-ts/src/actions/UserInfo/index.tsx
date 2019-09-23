@@ -1,7 +1,6 @@
-import { createAction, action } from "typesafe-actions";
+import { createAction } from "typesafe-actions";
 import ActionEvent from "../ActionEvent";
 import { UserInfo } from '../../reducers/UserInfo';
-import { access } from "fs";
 
 export interface StoreUserInfoAction { 
   id: string,

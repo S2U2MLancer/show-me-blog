@@ -1,4 +1,3 @@
-import { ActionType } from 'typesafe-actions';
 import UserActions from './UserInfo';
 import CategoryActionCreator from './Category';
 

@@ -1,4 +1,4 @@
-import { call, put, takeEvery, CallEffect } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import ActionEvent from '../../actions/ActionEvent';
 import AppActionCreator from '../../actions';
 import axios, {AxiosResponse} from 'axios';

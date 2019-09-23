@@ -1,6 +1,5 @@
 import { createReducer } from 'typesafe-actions';
 import ActionEvent from '../../actions/ActionEvent';
-import { StoreUserInfoAction } from '../../actions/UserInfo';
 
 export interface Contact {
   name: string,
